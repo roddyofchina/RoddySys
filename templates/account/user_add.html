@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block  page-content %}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">用户添加</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            用户添加
+                        </div>
+                        <div  class="panel-body">
+                    <form class="form-horizontal nice-validator n-yellow" method="post" id="assetForm" novalidate="novalidate">
+                        <div class="form-group"><label class="col-sm-2 control-label"> 域名 <span class="red-fonts">*</span></label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                        </div>
+
+
+
+                        <div class="form-group"><label class="col-sm-2 control-label"> IP <span class="red-fonts">*</span></label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                        </div>
+
+
+
+                        <div class="form-group"><label class="col-sm-2 control-label"> 申请时间 <span class="red-fonts">*</span></label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                        </div>
+
+
+                        <div class="form-group"><label class="col-sm-2 control-label"> 使用年限 <span class="red-fonts">*</span></label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="l_applist">状态<span class="red-fonts">*</span> </label>
+                            <div class="col-sm-6">
+                                <select class="form-control m-b" name="l_app" id="l_app" >
+                                    
+                                        <option value="1"> 正常 </option>
+                                    
+                                        <option value="96"> 过期 </option>
+                                
+                                    
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-5">
+                                <button type="submit" class="btn btn-white"> 重置 </button>
+                                <button type="sumbit" class="btn btn-primary"> 提交 </button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+            <!-- /.row -->
+
+   {%endblock%}

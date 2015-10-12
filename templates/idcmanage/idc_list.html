@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block page-content %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">IDC管理</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                
+
+                <div class="col-lg-12">
+
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            IDC信息管理
+                        </div>
+                        <div  class="panel-body">
+
+                     <div class="col-lg-12">
+                    <p>
+                        <a  href="{% url 'idc_add' %}"><button class="btn btn-primary " type="button">添加IDC</button></a>
+                    </p>
+                </div>
+                    <div class="col-lg-8">
+                    <div class="panel panel-default">
+
+
+                        <div class="panel-heading">
+                            基本信息
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>机房名</th>
+                                            <th>所在地</th>
+                                            <th>级别</th>
+                                            <th>主机数</th>
+                                            <th>操作</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>酒仙桥机房</td>
+                                            <td>北京</td>
+                                            <td>高级机房</td>
+                                            <td>59</td>
+                                          
+                                              <td class="center">
+
+                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
+                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>酒仙桥机房</td>
+                                            <td>北京</td>
+                                            <td>高级机房</td>
+                                            <td>230</td>
+                                              
+                                              <td class="center">
+
+                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
+                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>酒仙桥机房</td>
+                                            <td>北京</td>
+                                            <td>高级机房</td>
+                                              <td>100</td>
+
+                                              <td class="center">
+
+                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
+                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+                <div class="col-lg-4">
+                  
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            机房概述
+                        </div>
+                        <div class="panel-body">
+                            <p>建筑物抗震烈度8度，一层层高7米，承重超过1500Kg/㎡；二层层高超过5.5米，承重超过600Kg/㎡
+机房内部采用高架防静电地板空间可根据用户的需要做灵活分隔及扩展</p>
+                        </div>
+                        <div class="panel-footer">
+                            Panel Footer
+                        </div>
+                    </div>
+           
+
+
+
+
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            机房地址
+                        </div>
+                        <div class="panel-body">
+                            <p>北京市朝阳区酒仙桥北路9号松下彩管公司北部3期厂房</p>
+                        </div>
+                        <div class="panel-footer">
+                            Panel Footer
+                        </div>
+                    </div>
+                </div>
+                </div>
+                            
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+
+
+            </div>
+            <!-- /.row -->
+
+    {% endblock %}

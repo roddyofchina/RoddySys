@@ -1,0 +1,14 @@
+system:centos 7
+
+
+yum °²×°    python-devl  mysql-devl  gcc
+
+
+software: python==2.7.5
+          django==1.7.10
+          MySQL-python==1.2.5
+
+
+
+
+
