@@ -85,6 +85,7 @@ USE_TZ = True
 
 
 
+AUTH_USER_MODEL = 'account.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -100,4 +101,6 @@ TEMPLATE_DIRS=(
 )
 
 SESSION_COOKIE_AGE = 60*60
+
+
 

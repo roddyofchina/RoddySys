@@ -35,9 +35,11 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+
                                             <th>用户名</th>
                                             <th>姓  名</th>
+                                            <th>邮  箱</th>
+                                            <th>联系方式</th>
                                             <th>部  门</th>
                                             <th>角  色</th>
                                             <th>激  活</th>
@@ -46,41 +48,112 @@
                                     </thead>
                                     <tbody>
                                         <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>luodi</td>
-                                            <td>罗迪</td>
-                                            <td class="center">运维部</td>
-                                            <td class="center">超级管理员</td>
-                                            <td class="center">是</td>
-                                            <td class="center">
-                                                <a class="btn btn-xs btn-primary" href="/jasset/host_detail/?id=548">详情</a>
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
+                                            {% for i in GetUser%}
 
-                                                                            <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>luodi</td>
-                                            <td>罗迪</td>
-                                            <td class="center">运维部</td>
-                                            <td class="center">超级管理员</td>
-                                            <td class="center">是</td>
+                                            <td>{{i.username}}</td>
+                                            <td>{{i.nickname}}</td>
+                                            <td>{{i.email}}</td>
+                                            <td>{{i.phone}}</td>
+                                            <td class="center">{{i.dept}}</td>
                                             <td class="center">
-                                                <a class="btn btn-xs btn-primary" href="/jasset/host_detail/?id=548">详情</a>
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
+                                            {% for k,v in list_role.items %}
+                                                    {% if k == i.role %}
+                                                             {{v}}
+                                                    {%endif%}
+                                            {% endfor %}
                                             </td>
-                                        </tr>
+                                            {%if i.is_active%}
+                                                    <td class="center "><p class="glyphicon glyphicon-ok"></p></td>
+                                            {%else%}
+                                                    <td class="center"><p></p></td>
+                                            {%endif%}
+                                            <td class="center">
+                                                <a class="btn btn-xs btn-info" href="/account/edit/{{i.id}}">编辑</a>
+                                                <button class="btn btn-xs btn-danger" data-toggle="modal"  onclick="clickurl('{{i.id}}')"  data-target="#myModal" >删除</button>
+                                                 <a class="btn btn-xs btn-warning" href="/account/setpasswd/{{i.id}}">修改密码</a>
 
-                                        
-                                   
-                                        
+                                            </td>
+
+                                        </tr>
+                                    {%endfor%}
                                     </tbody>
                                 </table>
+
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                   aria-labelledby="myModalLabel" aria-hidden="true">
+                                   <div class="modal-dialog">
+                                      <div class="modal-content">
+                                         <div class="modal-header">
+                                            <button type="button" class="close"
+                                               data-dismiss="modal" aria-hidden="true">
+                                                  &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                               删除提醒
+                                            </h4>
+                                         </div>
+                                         <div class="modal-body">
+                                            系统提示:您是否确认删除这条记录!!!!
+                                         </div>
+                                         <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                               data-dismiss="modal">关闭
+                                            </button>
+                                             <button type="button" class="btn btn-primary formSubmit" id="postdel"> 删除 </button>
+                                            <!--<a class="btn btn-primary" id="clickurl" > 删除</a>-->
+                                         </div>
+
+                                      </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+
+
+
+
                             </div>
-                            <!-- /.table-responsive -->
-                            
+                            <!-- /.table-responsive
+                            <script>
+                                function clickurl(url){
+
+                                       $("#clickurl").attr("href","/account/del/"+url);
+                                }
+                            </script>
+                                -->
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                              </div>
+                              <div class="modal-body">
+                                     <p id="getdata">ddddddd</p>
+                              </div>
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <a class="btn btn-primary" href="/account/list/">确定</a>
+                                </div>
+                            </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                            <script>
+                               function clickurl(url){
+                                    $("#postdel").click(function() {
+                                        $.get("/account/del/"+url,
+                                                 function (data) {
+                                                    $('#myModal').modal('hide')
+                                                    $("#getdata").html(data);
+                                                    $('#myModal2').modal('show');
+                                                });
+                                    });
+                                }
+                          </script>
+
+
+
                         </div>
                         <!-- /.panel-body -->
 
@@ -119,5 +192,8 @@
                 });
             });
             </script>
+
+
+
 
     {% endblock %}

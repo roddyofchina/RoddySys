@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block page-content %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">修改密码</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            修改密码
+                        </div>
+                        <div  class="panel-body">
+                    <div class="form-horizontal nice-validator n-yellow" method="post" action="" >
+                         <div class="form-group"><label class="col-sm-3 control-label"> 用户名 <span class="red-fonts">*</span></label>
+                             <div class="col-sm-6"><label>{{UserDAT.username}}</label></div>
+
+                        </div>
+
+                        {% if  not ID == 1 %}
+                            <div class="form-group"><label class="col-sm-3 control-label"> 原密码 <span class="red-fonts">*</span></label>
+                                <div class="col-sm-6"><input type="password" class="form-control" name="oldpasswd"  required></div>
+                            </div>
+                        {%else%}
+                                <div><input type="text" class="form-control" name="oldpasswd"  style="display:none;"></div>
+                        {% endif %}
+
+                         <div class="form-group"><label class="col-sm-3 control-label"> 新密码 <span class="red-fonts">*</span></label>
+                            <div class="col-sm-6"><input type="password" class="form-control" name="newpasswd1"  required></div>
+                        </div>
+
+                         <div class="form-group"><label class="col-sm-3 control-label"> 再次输入新密码 <span class="red-fonts">*</span></label>
+                            <div class="col-sm-6"><input type="password" class="form-control" name="newpasswd2"  required></div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-5">
+                                <button type="reset"  class="btn btn-white"> 重置 </button>
+                                <button type="button" class="btn btn-primary formSubmit" id="postset"> 提交 </button>
+                            </div>
+                        </div>
+
+                        {% csrf_token %}
+                    </form>
+
+                </div>
+                    <!-- /.panel -->
+
+
+                </div>
+            </div>
+
+
+
+         <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  id="myModal" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                  </div>
+                  <div class="modal-body">
+                         <p id="getdata">ddddddd</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- /.row -->
+
+
+
+                  <script>
+                       $(function(){
+                            $("#postset").click(function() {
+                                $.post("",
+                                         {newpasswd1: $("input[name='newpasswd1']").val(),
+                                               newpasswd2: $("input[name='newpasswd2']").val(),
+                                               oldpasswd: $("input[name='oldpasswd']").val(),
+                                               csrfmiddlewaretoken: '{{ csrf_token }}'},
+                                         function (data) {
+                                            $("#getdata").html(data);
+                                            $('#myModal').modal('show');
+                                        });
+                            });
+                        });
+                  </script>
+
+      {% endblock %}
+

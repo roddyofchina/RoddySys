@@ -1,5 +1,6 @@
-from django.shortcuts import render,render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render_to_response,RequestContext
 
 from account.account_api import require_login
 from django.contrib import auth
@@ -8,7 +9,12 @@ from django.contrib import auth
 @require_login
 def index(request):
     if request.method =='GET':
-        return  render_to_response('index.html')
+        Username=request.session.get('user_name')
+        kwvars = {
+            'request': request,
+            'username': Username,
+        }
+        return  render_to_response('index.html',kwvars,RequestContext(request))
 
 
 def server_lists(request):
