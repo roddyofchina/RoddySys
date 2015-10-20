@@ -2,6 +2,7 @@
 __author__ = 'Di LUO'
 
 from django.http import HttpResponseRedirect
+import os
 
 
 
@@ -69,6 +70,16 @@ def require_login(func):
             return HttpResponseRedirect('/account/login/')
         return func(request, *args, **kwargs)
     return _deco
+
+
+
+
+def listencelery():
+    ps_string = os.popen('ps -ax | grep celery |grep -v grep  ','r').read()
+    if len(ps_string) == 0:
+        return 1
+    else:
+        return 0
 
 
 

@@ -40,6 +40,9 @@ urlpatterns += patterns('serversys',
     url(r'^Business/del/(\d+)$',Business_del,name='Business_del'),
     url(r'^Business/edit/(\d+)$',Business_edit,name='Business_edit'),
     url(r'output/$',exportAgencyCustomers,name='outputdata'),
+
+    url(r'graph/idcservers/$',graphidcservers,name='graphidcservers'),
+    url(r'graph/statusservers/$',statusservers,name='statusservers'),
 )
 
 urlpatterns += patterns('domainsys',

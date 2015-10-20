@@ -40,6 +40,11 @@
     <![endif]-->
     <script src="/static/jquery/dist/jquery.min.js"></script>
 
+     <script src="/static/datatable/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="/static/datatable/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="/static/echarts/build/dist/echarts.js"></script>
+
+
 </head>
 
 <body>
@@ -55,7 +60,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">RoddySys 运维系统 v1.0</a>
+                <a class="navbar-brand" href="index.html">RoddySys 运维系统 v1.3</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -150,20 +155,20 @@
                             <a href="/"><i class="fa fa-dashboard fa-fw"></i> 控制中心</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-tasks fa-fw"></i> 资产管理<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-tasks fa-fw"></i> 资源管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{% url 'server_list' %}">服务器管理</a>
+                                    <a href="{% url 'server_list' %}"> 服务器管理</a>
                                 </li>
                                 <li>
-                                     <a href="{% url 'zone_list'%}">区域管理</a>
+                                     <a href="{% url 'zone_list'%}"> 区域管理</a>
 
                                 </li>
                                    <li>
-                                       <a href="{% url 'idc_list' %}">IDC管理</a>
+                                       <a href="{% url 'idc_list' %}"> IDC管理</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'Business_list' %}">业务管理</a>
+                                    <a href="{% url 'Business_list' %}"> 业务管理</a>
                                 </li>
 
                             </ul>

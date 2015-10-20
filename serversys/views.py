@@ -41,11 +41,13 @@ def server_lists(request):
     if request.method =='GET':
         Username=request.session.get('user_name')
         Serverlist= servers.objects.all()
+
         kwvars = {
             'request': request,
             'username': Username,
             'Serverlist':Serverlist,
             'ServerStatus': server_status,
+            'listencelery':listencelery,
         }
         return render_to_response('serversys/server_lists.html',kwvars,RequestContext(request))
 
@@ -70,14 +72,16 @@ def server_add(request):
 
     if request.method == 'POST':
         hostname = request.POST.get('servername')
+        externalip = request.POST.get('externalip')
         if is_common_user(request):
             return HttpResponse(u"普通用户没有权限!!!")
         if servers.objects.filter(hostname=hostname):
             return HttpResponse(u"主机已经存在!!!")
+        elif servers.objects.filter(externalip=externalip):
+            return HttpResponse(u"外网IP已经存在")
         else:
             pass_wd = request.POST.get('passwd')
             passwd = base64.encodestring(pass_wd)
-            externalip = request.POST.get('externalip')
             internalip = request.POST.get('internalip')
             vip = request.POST.get('vip')
             Business_id = request.POST.get('Business')
@@ -123,6 +127,11 @@ def server_alladd(request):
                     continue
 
                 externalip=s[1]
+                externalipid=servers.objects.filter(externalip=externalip)
+                if externalipid:
+                    count[s[0]]="外网IP已经存在"
+                    errormsg.append(count)
+                    continue
                 internalip=s[2]
                 vip=s[3]
                 Business_id=s[4]
@@ -180,40 +189,6 @@ def server_alladd(request):
             else:
                 return HttpResponse(json.dumps(errormsg), content_type="application/json")
 
-            '''
-            if is_common_user(request):
-                return HttpResponse(u"普通用户没有权限!!!")
-            if servers.objects.filter(hostname=hostname):
-                return HttpResponse(u"主机已经存在!!!")
-            else:
-                pass_wd = request.POST.get('passwd')
-                passwd = base64.encodestring(pass_wd)
-                externalip = request.POST.get('externalip')
-                internalip = request.POST.get('internalip')
-                vip = request.POST.get('vip')
-                Business_id = request.POST.get('Business')
-                Business = business.objects.get(id=Business_id)
-                dept_id = request.POST.get('dept')
-                deptname = Dept.objects.get(id=dept_id)
-                cpu = request.POST.get('cpu')
-                cpumhz = request.POST.get('cpumhz')
-                mem = request.POST.get('mem')
-                disk = request.POST.get('disk')
-                type = request.POST.get('type')
-                system = request.POST.get('system')
-                desc = request.POST.get('desc')
-                idc_id = request.POST.get('idc')
-                idc=idclist.objects.get(id=idc_id)
-                p=servers(hostname=hostname,externalip=externalip,internalip=internalip,businessname=Business,\
-                          passwd=passwd,dept=deptname,cpu=cpu,cpumhz=cpumhz,mem=mem,disk=disk,type=type,system=system,comment=desc,\
-                          idc=idc,virtip=vip
-                       )
-                p.save()
-                '''
-
-
-
-
 
 
 @require_login
@@ -242,6 +217,11 @@ def server_edit(request,id):
     if request.method == 'POST':
             if is_common_user(request):
                 return HttpResponse(u"普通用户没有权限!!!")
+            ip=request.POST.get('externalip')
+            externalipid=servers.objects.filter(externalip=ip)
+            if externalipid:
+                return HttpResponse(u"外网IP地址已经存在")
+
             Serveredit =servers.objects.get(id=id)
             Serveredit.hostname = request.POST.get('servername')
             pass_wd = request.POST.get('passwd')
@@ -667,6 +647,43 @@ def exportAgencyCustomers(request):
     output.seek(0)
     response.write(output.getvalue())
     return response
+
+@require_login
+def graphidcservers(request):
+    if request.method == 'GET':
+
+        Idclists= idclist.objects.all()
+        idcdict={}
+        idcname=[]
+        serversvalues=[]
+        for v in Idclists:
+            csd=servers.objects.filter(idc=v.id).count()
+            idcname.append(v.idcname)
+            serversvalues.append(csd)
+
+        idcdict['idcname']= idcname
+        idcdict['serversvalues']= serversvalues
+
+        return  HttpResponse(json.dumps(idcdict), content_type="application/json")
+
+
+@require_login
+def statusservers(request):
+    if request.method == 'GET':
+        statusdict={}
+        statusname=[]
+        data=[]
+        for k,v in server_status.items():
+            s={}
+            csd=servers.objects.filter(status=k).count()
+            statusname.append(v)
+            s['value']=csd
+            s['name']=v
+            data.append(s)
+        statusdict['statusname']= statusname
+        statusdict['data']= data
+
+        return  HttpResponse(json.dumps(statusdict), content_type="application/json")
 
 
 

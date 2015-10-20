@@ -102,10 +102,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            sdsddssdddd
+                        <div class="row">
+                            <div class="col-lg-6" id="main2" style="height: 400px;  padding: 10px;margin-top;10px"></div>
+                           <div  class="col-lg-6" id="main"  style="height: 400px;  padding: 10px;margin-top;10px">
+                        </div>
+
+
+                          <div class="row">
+                            <div class="col-lg-10" id="main3" style="height:400px;width:700px;"></div>
+                           <div  class="col-lg-4" id="main4" style="height:400px;width:600px;"></div>
+                        </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -116,4 +123,185 @@
                 
             </div>
             <!-- /.row -->
+
+               <script type="text/javascript">
+                        require.config({
+                            paths: {
+                                echarts: '/static/echarts/build/dist'
+                            }
+                        });
+                        require(
+                            [
+                                'echarts',
+                                'echarts/chart/pie',   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+
+                            ],
+                             function (ec) {
+                                // 基于准备好的dom，初始化echarts图表
+                                var smyChart = ec.init(document.getElementById('main2'));
+                                var soptions = {
+                                    title : {
+                                        text: '主机状态汇总',
+                                        x:'center'
+                                    },
+                                    tooltip : {
+                                        trigger: 'item',
+                                        formatter: "{a} <br/>{b} : {c} "
+                                    },
+                                    legend: {
+                                        orient : 'vertical',
+                                        x : 'left',
+                                        data:[]
+                                    },
+                                    color:['#98FB98','#FF0000','#28c6b9',],
+                                    toolbox: {
+                                        show : true,
+                                        feature : {
+                                            magicType : {
+                                                show: true,
+                                                type: ['pie', 'funnel'],
+                                                option: {
+                                                    funnel: {
+                                                        x: '25%',
+                                                        width: '50%',
+                                                        funnelAlign: 'left',
+                                                        max: 1548
+                                                    }
+                                                }
+                                            },
+                                            restore : {show: true},
+                                            saveAsImage : {show: true}
+                                        }
+                                    },
+                                    calculable : true,
+                                    series : [
+                                        {
+                                            name:'主机状态',
+                                            type:'pie',
+                                            radius : '55%',
+                                            center: ['50%', '60%'],
+                                            data:[
+
+
+                                            ]
+                                        }
+                                    ],
+                                };
+
+                             jQuery.ajax({
+                                        type: 'GET',
+                                        url: "/graph/statusservers/" ,
+                                        cache:false,
+                                        dataType:"json" ,
+                                        success: function(data) {
+                                        if (data) {
+                                            soptions.legend.data=data.statusname;
+                                            soptions.series[0].data = data.data;
+                                            smyChart.hideLoading();
+                                             // 为echarts对象加载数据
+                                            smyChart.setOption(soptions);
+                                            }
+
+                                         }
+
+                                });
+
+
+
+
+                            }
+
+                        );
+
+               </script>
+
+
+
+                <script type="text/javascript">
+                        require.config({
+                            paths: {
+                                echarts: '/static/echarts/build/dist'
+                            }
+                        });
+                        require(
+                            [
+                                'echarts',
+                                'echarts/chart/line',   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                                'echarts/chart/bar'
+                            ],
+                             function (ec) {
+                                // 基于准备好的dom，初始化echarts图表
+                                var myChart = ec.init(document.getElementById('main'));
+
+                                var options = {
+                                    tooltip: {
+                                        show: true
+                                    },
+
+                                    legend: {
+                                        data:['IDC服务器数',]
+                                    },
+                                      toolbox: {
+                                            show : true,
+                                            feature : {
+                                                magicType : {show: true, type: ['line', 'bar']},
+                                                saveAsImage : {show: true}
+                                            }
+                                        },
+
+
+
+
+                                    xAxis : [
+                                        {
+                                            type : 'category',
+
+                                             data : [],
+                                              axisLabel:{
+                                                rotate:45,
+
+
+                                              }
+                                        }
+                                    ],
+
+                                    yAxis : [
+                                        {
+                                            type : 'value'
+                                        }
+                                    ],
+                                    series : [
+                                        {
+                                            "name":"服务器",
+                                            "type":"bar",
+                                            "data":[]
+                                        }
+                                    ],
+
+
+                                };
+
+                             jQuery.ajax({
+                                    type: 'GET',
+                                    url: "/graph/idcservers" ,
+                                    cache:false,
+                                    dataType:"json" ,
+                                    success: function(data) {
+                                    if (data) {
+                                        options.xAxis[0].data=data.idcname
+                                        options.series[0].data = data.serversvalues;
+                                        myChart.hideLoading();
+                                         // 为echarts对象加载数据
+                                        myChart.setOption(options);
+                                        }
+
+                                     }
+
+                                });
+
+                            }
+                        );
+
+                    </script>
+
         {% endblock %}
