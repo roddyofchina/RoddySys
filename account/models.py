@@ -8,6 +8,7 @@ class Dept(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class UserManager(BaseUserManager):
     def create_user(self,email,username,password=None):
         if not email:

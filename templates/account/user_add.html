@@ -128,7 +128,7 @@
                   </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <a class="btn btn-primary" href="/account/list/">确定</a>
+
                     </div>
                 </div>
               </div>
@@ -146,7 +146,7 @@
                                 var reg=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
 
                                 if (!reg.test($("#email").val())) {
-                                    　　$("#getdata").html("输入的邮箱格式不正确!!!");
+                                    　　$("#getdata").html("请输入正确的邮箱格式!!!");
                                         $('#myModal').modal('show');
                                         return false;
                                 　}

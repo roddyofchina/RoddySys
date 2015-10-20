@@ -40,45 +40,23 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>城市</th>
-                                            <th>主机数</th>
+                                            <th>区域</th>
+
                                             <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {%for i in ZoneData%}
                                         <tr>
-                                            <td>1</td>
-                                            <td>北京</td>
-                                            <td>299</td>
-                                          
+                                            <td>{{i.id}}</td>
+                                            <td>{{i.name}}</td>
                                               <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
+                                                <a class="btn btn-xs btn-info" href="/zone/edit/{{i.id}}">编辑</a>
+                                                <button class="btn btn-xs btn-danger" data-toggle="modal"  onclick="clickurl('{{i.id}}')"  data-target="#myModal" >删除</button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>北京</td>
-                                            <td>299</td>
-                                              
-                                              <td class="center">
+                                        {%endfor%}
 
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>北京</td>
-                                            <td>299</td>
-
-                                              <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -100,10 +78,71 @@
 
                         <div  class="col-md-10">说明：区域管理用于添加区域信息如，成都、北京</div> 
    
-                </div>
+                     </div>
 
-                
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                           aria-labelledby="myModalLabel" aria-hidden="true">
+                                           <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                 <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                       data-dismiss="modal" aria-hidden="true">
+                                                          &times;
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                       删除提醒
+                                                    </h4>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                    系统提示:您是否确认删除这条记录!!!!
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default"
+                                                       data-dismiss="modal">关闭
+                                                    </button>
+                                                    <a class="btn btn-primary" id="postdel" > 删除</a>
+                                                 </div>
+                                              </div>
+                                           </div>
+                                     </div>
 
+
+
+
+                                      <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                     <p id="getdata">ddddddd</p>
+                                              </div>
+                                            <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                     <a class="btn btn-primary" href="/zone/list/">确定</a>
+
+                                                </div>
+                                             </div>
+                                          </div>
+                                         </div>
+
+
+
+                                 <script>
+                                   function clickurl(url){
+                                        $("#postdel").click(function() {
+                                            $.get("/zone/del/" + url,
+                                                     function (data) {
+                                                        $('#myModal').modal('hide')
+                                                        $("#getdata").html(data);
+                                                        $('#myModal2').modal('show');
+                                                    });
+                                        });
+                                    }
+                              </script>
 
 
             </div>

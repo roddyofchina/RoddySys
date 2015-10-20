@@ -5,11 +5,37 @@ from django.http import HttpResponseRedirect
 
 
 
-list_role={
+list_role = {
         1:"超级管理员",
         2:"系统管理员",
         3:"普通用户",
 }
+
+server_type = {
+        1:"云主机",
+        2:"物理机",
+        3:"租用机",
+}
+
+server_system = {
+        1:"Linux",
+        2:"windows",
+        3:"unix",
+}
+
+idc_level={
+        1:"高级机房",
+        2:"中级机房",
+        3:"普通机房"
+}
+
+server_status={
+        1:"Running",
+        2:"Down",
+        3:"Unknown"
+}
+
+
 
 
 def is_super_user(request):

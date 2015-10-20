@@ -19,38 +19,103 @@
                             业务添加
                         </div>
                         <div  class="panel-body">
-                    <form class="form-horizontal nice-validator n-yellow" method="post" id="assetForm" novalidate="novalidate">
+                    <form class="form-horizontal nice-validator n-yellow" method="post"  >
                         <div class="form-group"><label class="col-sm-2 control-label"> 业务名 <span class="red-fonts">*</span></label>
-                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="name" placeholder="数据库应用"  required="true" ></div>
                         </div>
 
 
 
-                        <div class="form-group"><label class="col-sm-2 control-label"> 负责人 <span class="red-fonts">*</span></label>
-                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label"> 负责人 <span class="red-fonts"></span></label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="contactperson" ></div>
                         </div>
 
 
 
-                        <div class="form-group"><label class="col-sm-2 control-label"> 联系方式 <span class="red-fonts">*</span></label>
-                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label"> 联系方式 <span class="red-fonts"></span></label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="contactphone"  ></div>
                         </div>
 
 
-                        <div class="form-group"><label class="col-sm-2 control-label"> 邮   箱 <span class="red-fonts">*</span></label>
-                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label"> 邮   箱 <span class="red-fonts"></span></label>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="contactemail"  id="email" ></div>
                         </div>
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-5">
-                                <button type="submit" class="btn btn-white"> 重置 </button>
-                                <button type="sumbit" class="btn btn-primary"> 提交 </button>
+                                <button type="reset" class="btn btn-white"> 重置 </button>
+                                <button type="button" class="btn btn-primary" id="businessadd" > 提交 </button>
                             </div>
                         </div>
                     </form>
                     </div>
                     <!-- /.panel -->
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  id="myModal" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                  </div>
+                  <div class="modal-body">
+                         <p id="getdata">ddddddd</p>
+                  </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <a class="btn btn-primary" href="/Business/list/">确定</a>
+
+                    </div>
+                </div>
+              </div>
+            </div>
+
+                </div>
+            </div>
+            <!-- /.row -->
+
+             <script>
+                       $(function(){
+                            $("#businessadd").click(function() {
+                                  if($(name).val()=='') {
+                                    　　$("#getdata").html("请输入主机名");
+                                        $('#myModal').modal('show');
+                                        return false;
+                                　}
+
+                                 var reg=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+                                   if(!$(email).val()=='') {
+                                            if (!reg.test($("#email").val())) {
+                                                　　$("#getdata").html("请输入正确的邮箱格式!!!");
+                                                    $('#myModal').modal('show');
+                                                    return false;
+                                            　}
+                                    }
+
+                                $.post("",
+                                         {name: $("input[name='name']").val(),
+                                               contactperson: $("input[name='contactperson']").val(),
+                                               contactphone: $("input[name='contactphone']").val(),
+                                               contactemail: $("input[name='contactemail']").val(),
+                                               csrfmiddlewaretoken: '{{ csrf_token }}'},
+                                         function (data) {
+                                            $("#getdata").html(data);
+                                            $('#myModal').modal('show');
+                                        });
+                            });
+
+                        });
+                  </script>
+
+
+
+
+
+
+
+
                 </div>
             </div>
             <!-- /.row -->

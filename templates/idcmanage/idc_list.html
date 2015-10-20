@@ -49,45 +49,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>酒仙桥机房</td>
-                                            <td>北京</td>
-                                            <td>高级机房</td>
-                                            <td>59</td>
+                                    {%for i in Idclists%}
+                                        <tr id="{{i.id}}" class="hover">
+                                            <td>{{i.id}}</td>
+                                            <td>{{i.idcname}}</td>
+                                            <td>{{i.idczone}}</td>
+                                            {%for k,v in Idclevel.items%}
+                                                {%if k == i.idclevel%}
+                                                    <td>{{v}}</td>
+                                                {%endif%}
+                                            {%endfor%}
+
+                                            {%for k,v in idcdict.items%}
+                                                {%if k == i.id%}
+                                                    <td>{{v}}</td>
+                                                {%endif%}
+                                            {%endfor%}
                                           
                                               <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
+                                                <a class="btn btn-xs btn-info" href="/idc/edit/{{i.id}}">编辑</a>
+                                                <button class="btn btn-xs btn-danger" data-toggle="modal"  onclick="clickurl('{{i.id}}')"  data-target="#myModal" >删除</button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>酒仙桥机房</td>
-                                            <td>北京</td>
-                                            <td>高级机房</td>
-                                            <td>230</td>
-                                              
-                                              <td class="center">
+                                    {%endfor%}
 
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>酒仙桥机房</td>
-                                            <td>北京</td>
-                                            <td>高级机房</td>
-                                              <td>100</td>
-
-                                              <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -108,29 +93,23 @@
                             机房概述
                         </div>
                         <div class="panel-body">
-                            <p>建筑物抗震烈度8度，一层层高7米，承重超过1500Kg/㎡；二层层高超过5.5米，承重超过600Kg/㎡
-机房内部采用高架防静电地板空间可根据用户的需要做灵活分隔及扩展</p>
+                            <p id="desc">机房概述说明</p>
                         </div>
                         <div class="panel-footer">
-                            Panel Footer
+                           Idc Description
                         </div>
                     </div>
            
-
-
-
-
-
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             机房地址
                         </div>
                         <div class="panel-body">
-                            <p>北京市朝阳区酒仙桥北路9号松下彩管公司北部3期厂房</p>
+                            <p id="addr">机房地址</p>
                         </div>
                         <div class="panel-footer">
-                            Panel Footer
+                            Idc Address
                         </div>
                     </div>
                 </div>
@@ -139,6 +118,99 @@
                     </div>
                     <!-- /.panel -->
                 </div>
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                   aria-labelledby="myModalLabel" aria-hidden="true">
+                                   <div class="modal-dialog">
+                                      <div class="modal-content">
+                                         <div class="modal-header">
+                                            <button type="button" class="close"
+                                               data-dismiss="modal" aria-hidden="true">
+                                                  &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                               删除提醒
+                                            </h4>
+                                         </div>
+                                         <div class="modal-body">
+                                            系统提示:您是否确认删除这条记录!!!!
+                                         </div>
+                                         <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                               data-dismiss="modal">关闭
+                                            </button>
+                                             <button type="button" class="btn btn-primary formSubmit" id="postdel"> 删除 </button>
+                                            <!--<a class="btn btn-primary" id="clickurl" > 删除</a>-->
+                                         </div>
+
+                                      </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+
+
+
+
+                            </div>
+                            <!-- /.table-responsive
+                            <script>
+                                function clickurl(url){
+
+                                       $("#clickurl").attr("href","/account/del/"+url);
+                                }
+                            </script>
+                                -->
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                              </div>
+                              <div class="modal-body">
+                                     <p id="getdata">ddddddd</p>
+                              </div>
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <a class="btn btn-primary" href="/idc/list/">确定</a>
+                                </div>
+                            </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                    <script>
+                       function clickurl(url){
+                            $("#postdel").click(function() {
+                                $.get("/idc/del/"+url,
+                                         function (data) {
+                                            $('#myModal').modal('hide')
+                                            $("#getdata").html(data);
+                                            $('#myModal2').modal('show');
+                                        });
+                            });
+                        }
+                  </script>
+
+
+
+                <script type="text/javascript">
+                    $(function(){
+                        $(".hover").hover(function(){
+                         var id=$(this).attr("id");
+                        timer = setTimeout(function(){
+                              $.get("/idc/other/" + id, function(data){
+
+                                      $("#desc").html(data["desc"]);
+                                      $("#addr").html(data["addr"]);
+                                });
+                            },600);
+                        },function(){
+                           //这里去clear
+                            clearTimeout(timer);
+                        });
+                    });
+                </script>
 
 
 

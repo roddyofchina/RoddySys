@@ -37,7 +37,7 @@ def login_user(request):
 
             kwvars = {
                 'request': request,
-                'have_error_data': "用户名或密码错误"
+                'have_error_data': u"用户名或密码错误"
             }
             return render_to_response("account/login.html", kwvars, RequestContext(request))
 
@@ -83,9 +83,9 @@ def account_add(request):
     if request.method == 'POST':
         user_name = request.POST.get('username')
         if is_common_user(request):
-            return HttpResponse("普通用户没有权限!!!")
+            return HttpResponse(u"普通用户没有权限!!!")
         if User.objects.filter(username=user_name):
-            return HttpResponse("用户已经存在!!!")
+            return HttpResponse(u"用户已经存在!!!")
         else:
             pass_wd = request.POST.get('passwd')
             pass_wd = make_password(pass_wd)
@@ -101,7 +101,7 @@ def account_add(request):
                    nickname=nick_name, role=role_name, is_active=isactive, phone=phone
                    )
             p.save()
-            return HttpResponse("用户添加成功")
+            return HttpResponse(u"用户添加成功")
 
 
 
@@ -123,7 +123,7 @@ def account_edit(request,id):
 
     if request.method == 'POST':
             if is_common_user(request):
-                return HttpResponse("普通用户没有权限!!!")
+                return HttpResponse(u"普通用户没有权限!!!")
             Useredit =User.objects.get(id=id)
             Useredit.username = request.POST.get('username')
             Useredit.email = request.POST.get('email')
@@ -135,12 +135,12 @@ def account_edit(request,id):
             Useredit.role = request.POST.get('role')
             Useredit.is_active = int(request.POST.get('isactive')) #数据库类型为int所以要进行转换
             Useredit.save()
-            return HttpResponse("用户修改成功")
+            return HttpResponse(u"用户修改成功")
 
 @require_login
 def account_del(request,id):
     if is_common_user(request):
-        return HttpResponse("普通用户没有权限!!!")
+        return HttpResponse(u"普通用户没有权限!!!")
     if id == '1':
         return HttpResponse(u'超级管理员不能删除')
     else:
@@ -150,7 +150,7 @@ def account_del(request,id):
 
 @require_login
 def dept_list(request):
-    DeptData=Dept.objects.all()
+
     if request.method == 'GET':
         Deptlist=Dept.objects.all()
         Username=request.session.get('user_name')
@@ -176,10 +176,10 @@ def dept_add(request):
     if request.method == 'POST':
         dept_name=request.POST.get('dept_name')
         if is_common_user(request):
-            return HttpResponse("普通用户没有权限!!!")
+            return HttpResponse(u"普通用户没有权限!!!")
         if Dept.objects.filter(name=dept_name):
 
-            Warrmess="部门已经存在!!"
+            Warrmess=u"部门已经存在!!"
             return HttpResponse(Warrmess)
         else:
             p=Dept(name=dept_name)
@@ -203,27 +203,38 @@ def dept_edit(request,deid):
 
     if request.method == 'POST':
         if is_common_user(request):
-            return HttpResponse("普通用户没有权限!!!")
+            return HttpResponse(u"普通用户没有权限!!!")
 
         GetDeptname=request.POST.get('dept_name')
-        if not Dept.objects.filter(name=GetDeptname,id=deid):
-            return HttpResponse("部门已经存在，请重新输入!!!")
+
+        if Dept.objects.filter(name=GetDeptname,id=deid):
+
+            GetDept=Dept.objects.get(id=deid)
+            GetDept.name=request.POST.get('dept_name')
+            GetDept.save()
+            return HttpResponse(u"部门修改成功!!!")
+
+        if Dept.objects.filter(name=GetDeptname):
+            return HttpResponse(u"部门已经存在，请重新输入!!!")
         else:
             GetDept=Dept.objects.get(id=deid)
             GetDept.name=request.POST.get('dept_name')
             GetDept.save()
-            return HttpResponse("部门修改成功!!!")
+            return HttpResponse(u"部门修改成功!!!")
 
 
 @require_login
 def dept_del(request, id):
+    deldept=Dept.objects.get(id=id)
     if is_common_user(request):
-        return HttpResponse("普通用户没有权限!!!")
+        return HttpResponse(u"普通用户没有权限!!!")
     if id == '1':
         return HttpResponse(u'默认部门不能删除')
+    if deldept.user_set.all():
+        return HttpResponse(u'不能删除部门，请删除相关用户!!')
     else:
         Dept.objects.get(id=id).delete()
-    return HttpResponseRedirect('/account/dept/list/')
+        return HttpResponse(u"部门删除成功!!")
 
 
 @require_login
@@ -258,22 +269,22 @@ def set_passwd(request,id):
 
     if request.method == 'POST':
         if not is_super_user(request):
-            return HttpResponse("超级管理员才可修改密码")
+            return HttpResponse(u"超级管理员才可修改密码")
 
         Userset =User.objects.get(id=id)
         if not Uid ==1:    #如果不是用户超级管理员就进行验证
             oldpasswd=request.POST.get('oldpasswd')   #判断用户输入的当前密码是否正确
             if not Userset.check_password(oldpasswd):
-                return HttpResponse("输入的原密码不正确")
+                return HttpResponse(u"输入的原密码不正确")
 
         passwd1= request.POST.get('newpasswd1')
         passwd2= request.POST.get('newpasswd2')
         if not passwd2 == passwd1:
-            return HttpResponse("您输入的密码不一致!!!!!")
+            return HttpResponse(u"您输入的密码不一致!!!!!")
         else:
             Userset.set_password(passwd1)
             Userset.save()
-            return HttpResponse("密码修改成功")
+            return HttpResponse(u"密码修改成功")
 
 
 

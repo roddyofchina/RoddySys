@@ -7,7 +7,15 @@ yum 安装    python-devl  mysql-devl  gcc
 software: python==2.7.5
           django==1.7.10
           MySQL-python==1.2.5
+          xlwt-1.0.0
+          rabbitmq-server(yum 安装
+                           systemctl enable rabbitmq-server.service
+                           systemctl start  rabbitmq-server
 
+          )
+          django-celery  3.1.17
+
+          启动：python manage.py celery worker -B  --loglevel=info
 
 
 

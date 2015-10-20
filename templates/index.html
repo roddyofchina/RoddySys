@@ -3,7 +3,7 @@
 {% block page-content %}
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">控制中心</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -17,12 +17,12 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge">{{IDCdata}}</div>
                                     <div>IDC数</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="{% url 'idc_list' %}">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -39,12 +39,12 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge">{{ServerData}}</div>
                                     <div>服务器数</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="{% url 'server_list' %}">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -83,12 +83,12 @@
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
+                                    <div class="huge">{{Userdata}}</div>
                                     <div>用户数</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="{% url 'account_list' %}">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

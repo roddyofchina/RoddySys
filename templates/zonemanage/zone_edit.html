@@ -1,220 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>RoddySys  运维系统 v1.0</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="./datatable/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="./datatable/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="./metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="./dist/css/timeline.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="./dist/css/sb-admin-2.css" rel="stylesheet">
-
- 
-
-    <!-- Custom Fonts -->
-    <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">RoddySys 运维系统 v1.0</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> 用户信息</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 控制中心</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-tasks fa-fw"></i> 资产管理<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">服务器管理</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">IDC管理</a>
-                                </li>
-                                   <li>
-                                    <a href="morris.html">区域管理</a>
-                                </li>
-
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-                        <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> 业务管理</a>
-                        </li>
-
-                        <li>
-                            <a href="#"><i class="fa fa-tasks fa-fw"></i> 域名管理<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">域名列表</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">域名提供商</a>
-                                </li>
-                                 
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-
-                        <li>
-                            <a href="#"><i class="fa fa-tasks fa-fw"></i> 用户管理<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">用户信息</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">部门管理</a>
-                                </li>
-                                  <li>
-                                    <a href="morris.html">重置密码</a>
-                                </li>
-                                 
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-                    </ul>
-
-
-                </div>
-                <!-- /.sidebar-collapse -->
-
-            </div>
-            <!-- /.navbar-static-side -->
-               <!-- /#wrapper -->
-
-        </nav>
-
-        <div id="page-wrapper">
+{% block page-content %}
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">区域修改</h1>
@@ -231,65 +17,60 @@
                             区域修改
                         </div>
                         <div  class="panel-body">
-                    <form class="form-horizontal nice-validator n-yellow" method="post" id="assetForm" novalidate="novalidate">
+                    <form class="form-horizontal nice-validator n-yellow" method="post" id="assetForm" >
                         <div class="form-group"><label class="col-sm-2 control-label"> 区域 <span class="red-fonts">*</span></label>
-                            <div class="col-sm-6"><input type="text" class="form-control" name="j_idc" placeholder="北京联通" value="" aria-required="true" data-tip="输入IDC名"></div>
+                            <div class="col-sm-6"><input type="text" class="form-control" name="zonename" placeholder="北京"  value="{{zonedata.name}}" required="true" ></div>
                         </div>
 
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-5">
-                                <button type="submit" class="btn btn-white"> 重置 </button>
-                                <button type="sumbit" class="btn btn-primary"> 提交 </button>
+                                <button type="reset" class="btn btn-white"> 重置 </button>
+                                <button type="button" class="btn btn-primary" id="postset"> 提交 </button>
                             </div>
                         </div>
                     </form>
                     </div>
                     <!-- /.panel -->
+
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  id="myModal" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                          </div>
+                          <div class="modal-body">
+                                 <p id="getdata">ddddddd</p>
+                          </div>
+
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <a class="btn btn-primary" href="/zone/list/">确定</a>
+                            </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                  <script>
+                       $(function(){
+                            $("#postset").click(function() {
+                                $.post("",
+                                         {zone_name: $("input[name='zonename']").val(),
+                                               csrfmiddlewaretoken: '{{ csrf_token }}'},
+                                         function (data) {
+                                            $("#getdata").html(data);
+                                            $('#myModal').modal('show');
+                                        });
+                            });
+                        });
+                  </script>
+
+
                 </div>
             </div>
             <!-- /.row -->
+      {% endblock %}
 
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-
-    <script src="./dist/js/new-server.js"></script>
-
-
-    <!-- jQuery -->
-    <script src="./jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="./bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="./metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="./raphael/raphael-min.js"></script>
-    <script src="./morrisjs/morris.min.js"></script>
-    
-
-    <!-- Custom Theme JavaScript -->
-    <script src="./dist/js/sb-admin-2.js"></script>
-
-
-    <script src="./datatable/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="./datatable/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
- 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
-
-</body>
-
-</html>

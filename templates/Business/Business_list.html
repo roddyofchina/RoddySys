@@ -37,108 +37,93 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {%for i in BusinessData%}
                                         <tr class="odd gradeX">
-                                            <td>1</td>
-                                            <td>100.2.2.3</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center">X</td>
+                                            <td>{{i.id}}</td>
+                                            <td>{{i.name}}</td>
+                                            <td>{{i.contactperson}}</td>
+                                            <td class="center">{{i.contactphone}}</td>
+                                            <td class="center">{{i.contactemail}}</td>
                                             <td class="center">
 
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
+                                                <a class="btn btn-xs btn-info" href="/Business/edit/{{i.id}}">编辑</a>
+                                                <button class="btn btn-xs btn-danger" data-toggle="modal"  onclick="clickurl('{{i.id}}')"  data-target="#myModal" >删除</button>
                                             </td>
                                         </tr>
-                                        <tr class="even gradeC">
-                                            <td>2</td>
-                                            <td>100.2.2.100</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5</td>
-                                            <td class="center">C</td>
-                                              <td class="center">
+                                        {%endfor%}
 
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>3</td>
-                                            <td>100.2.2.20</td>
-                                            <td>Win 95+</td>
-                                            <td class="center">5.5</td>
-                                            <td class="center">A</td>
-                                              <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>4</td>
-                                            <td>Internet Explorer 6</td>
-                                            <td>Win 98+</td>
-                                            <td class="center">6</td>
-                                            <td class="center">X</td>
-                                              <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeA">
-                                            <td>5</td>
-                                            <td>Internet Explorer 7</td>
-                                            <td>Win XP SP2+</td>
-                                            <td class="center">7</td>
-                                            <td class="center">A</td>
-                                              <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="even gradeA">
-                                            <td>6</td>
-                                            <td>AOL browser (AOL desktop)</td>
-                                            <td>Win XP</td>
-                                            <td class="center">6</td>
-                                            <td class="center">A</td>
-                                              <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>7</td>
-                                            <td>Firefox 1.0</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.7</td>
-                                            <td class="center">A</td>
-                                              <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeA">
-                                            <td>8</td>
-                                            <td>Firefox 1.5</td>
-                                            <td>Win 98+ / OSX.2+</td>
-                                            <td class="center">1.8</td>
-                                            <td class="center">A</td>
-                                              <td class="center">
-
-                                                <a class="btn btn-xs btn-info" href="/jasset/host_edit/?id=548">编辑</a>
-                                                <a class="btn btn-xs btn-danger" href="/jasset/host_del/548">删除</a>
-                                            </td>
-                                        </tr>
-                                   
                                         
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.table-responsive -->
+
+                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                   <div class="modal-dialog">
+                                      <div class="modal-content">
+                                         <div class="modal-header">
+                                            <button type="button" class="close"
+                                               data-dismiss="modal" aria-hidden="true">
+                                                  &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                               删除提醒
+                                            </h4>
+                                         </div>
+                                         <div class="modal-body">
+                                            系统提示:您是否确认删除这条记录!!!!
+                                         </div>
+                                         <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                               data-dismiss="modal">关闭
+                                            </button>
+                                            <a class="btn btn-primary" id="postdel" > 删除</a>
+                                         </div>
+
+                                      </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+                            </div>
+
+                             <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                         <p id="getdata">ddddddd</p>
+                                  </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <a class="btn btn-primary" href="/Business/list/">确定</a>
+                                    </div>
+                                 </div>
+
+                                </div>
+                              </div>
+                            </div>
+
+
+                             <script>
+                               function clickurl(url){
+                                    $("#postdel").click(function() {
+                                        $.get("/Business/del/"+url,
+                                                 function (data) {
+                                                    $('#myModal').modal('hide')
+                                                    $("#getdata").html(data);
+                                                    $('#myModal2').modal('show');
+                                                });
+                                    });
+                                }
+                          </script>
+
+
+
+
+
+
                             
                         </div>
                         <!-- /.panel-body -->
