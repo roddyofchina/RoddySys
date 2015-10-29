@@ -11,8 +11,11 @@
   v1.3完成资产管理模块功能（添加主机、批量添加、导出主机列表（excel表））,新增主机状态监控功能（Running,Down,unKnown）
   ![image](https://github.com/roddyofchina/RoddySys/blob/master/templates/info/server.jpg)
   
-  v1.4功能开放说明：域名管理及域名到期通知（正在完成中。。。。）
-  v1.5功能开放说明：控制中心界面设计及通知消息功能（正在完成中。。。。）
+  ![image](https://github.com/roddyofchina/RoddySys/blob/master/templates/info/ff.png)
+  
+  v1.4功能开放说明：域名管理及域名到期通知（正在完成中。。。。）<br>
+  
+  v1.5功能开放说明：控制中心界面设计及通知消息功能（正在完成中。。。。）<br>
   
   
 ## 说明
