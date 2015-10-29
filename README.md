@@ -10,6 +10,10 @@
   v1.2用户管理模块更新(内置三种权限：超级管理员、系统管理员、普通用户),普通用户只有查看功能，系统管理不能修改密码<br>
   v1.3完成资产管理模块功能（添加主机、批量添加、导出主机列表（excel表））,新增主机状态监控功能（Running,Down,unKnown）
   ![image](https://github.com/roddyofchina/RoddySys/blob/master/templates/info/server.jpg)
+  <br>
+  
+  ![image](https://github.com/roddyofchina/RoddySys/blob/master/templates/info/cc.jpg)
+  <br>
   
   ![image](https://github.com/roddyofchina/RoddySys/blob/master/templates/info/ff.png)
   
